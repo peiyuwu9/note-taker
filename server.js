@@ -3,7 +3,7 @@ var connection = require("./database/connection.js");
 
 // Initialize the app and create a port
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // Set up body parsing, static, and route middleware
 app.use(express.json());

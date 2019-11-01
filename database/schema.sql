@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS note_db;
-CREATE DATABASE note_db;
+DROP DATABASE IF EXISTS rpms65idvxlg2hrb;
+CREATE DATABASE rpms65idvxlg2hrb;
 
-USE note_db;
+USE rpms65idvxlg2hrb;
 
 CREATE TABLE notes
 (

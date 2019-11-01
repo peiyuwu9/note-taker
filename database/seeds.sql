@@ -1,4 +1,4 @@
-USE note_db;
+USE rpms65idvxlg2hrb;
 
 INSERT INTO notes (title, text)
 VALUES
