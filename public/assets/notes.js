@@ -8,7 +8,7 @@
         var noteArea = $("<li class='list-group-item'>");
         var div = $("<div>");
         var noteTitle = $("<span class='font-weight-bold saved-note-title'>" + result[i].title + "</span>");
-        var edit = $("<i class='fas fa-pen float-right text-danger edit-note' data-id= " + result[i].id + ">")
+        var edit = $("<a href= '#top'><i class='fas fa-pen float-right text-danger edit-note' data-id= " + result[i].id + ">")
         var trash = $("<i class='fas fa-trash-alt float-right text-danger delete-note' data-id= " + result[i].id + ">")
         var noteText = $("<p class='mt-2'>" + result[i].text + "</p>");
         // var timeConverter = moment(result[i].created_at, ["YYYY", moment.ISO_8601]);
@@ -72,31 +72,32 @@ $(document.body).on("click", ".edit-note", function(){
         $("#note-title").attr("value", result[0].title);
         $("#note-text").text(result[0].text);
         $(".btn").attr("class", "btn btn-success mt-4 float-right add-edited-note").attr("data-id", id);
-        
-        $(".add-edited-note").on("click", function(event){
-
-            event.preventDefault();
-            var id = $(this).data("id");
-
-            //Store input data in variables
-            var editNote = {
-                noteTitle: $("#note-title").val().trim(),
-                noteText: $("#note-text").val().trim()
-            };
-            
-            console.log(editNote);
-            $("#note-title").val("");
-            $("#note-text").val("");
-
-            $.ajax("/api/notes/" + id, {
-                type: "PUT"
-            }).then(function(data){
-                if (data) {
-                    console.log("Note has been updated.");
-                }
-            });
-
-            // location.reload();
-        });
+        console.log('add button', $('.add-edited-note'));
     });
 });
+
+$(document.body).on("click", ".add-edited-note", function(){
+    event.preventDefault();
+    var id = $(this).data("id");
+
+    //Store input data in variables
+    var editNote = {
+        noteTitle: $("#note-title").val().trim(),
+        noteText: $("#note-text").val().trim()
+    };
+    
+    console.log(editNote);
+    $("#note-title").val("");
+    $("#note-text").val("");
+
+    $.ajax("/api/notes/" + id, {
+        type: "PUT"
+    }).then(function(data){
+        if (data) {
+            console.log("Note has been updated.");
+        }
+    });
+
+    // location.reload();
+});
+
