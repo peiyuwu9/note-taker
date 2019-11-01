@@ -11,7 +11,7 @@
         var edit = $("<a href= '#top'><i class='fas fa-pen float-right text-danger edit-note' data-id= " + result[i].id + ">")
         var trash = $("<i class='fas fa-trash-alt float-right text-danger delete-note' data-id= " + result[i].id + ">")
         var noteText = $("<p class='mt-2'>" + result[i].text + "</p>");
-        // var timeConverter = moment(result[i].created_at, ["YYYY", moment.ISO_8601]);
+        // var timeConverter = moment(result[i].created_at).format("YYYY-MM-DD HH:mm A");
         var timeStamp = $("<p>" + result[i].created_at + "</p>");
         div.append(noteTitle, trash, edit);
         noteArea.append(div, noteText, timeStamp);
@@ -36,10 +36,8 @@ $(".add-note").on("click", function(event){
     
     //Post input data to api middleware and clear input textbox
     $.post("/api/notes", newNote)
-    .then(function(data){
-        if (data) {
-            console.log("Note has been added.");
-        }
+    .then(function(err){
+        if (err) throw err
     });
     location.reload();
 });
@@ -49,10 +47,8 @@ $(document.body).on("click", ".delete-note", function(){
     var id = $(this).data("id");
     $.ajax("/api/notes/" + id, {
         type: "DELETE"
-    }).then(function(data){
-        if (data) {
-            console.log("Note has been deleted.");
-        }
+    }).then(function(err){
+        if (err) throw err
     });
     location.reload();
 }); 
@@ -68,7 +64,6 @@ $(document.body).on("click", ".edit-note", function(){
         console.log(result[0]);
         console.log(result[0].title);
         console.log(result[0].text);
-        $(".card-title").text("Edit This Note");
         $("#note-title").attr("value", result[0].title);
         $("#note-text").text(result[0].text);
         $(".btn").attr("class", "btn btn-success mt-4 float-right add-edited-note").attr("data-id", id);
@@ -76,8 +71,10 @@ $(document.body).on("click", ".edit-note", function(){
     });
 });
 
-$(document.body).on("click", ".add-edited-note", function(){
+$(".add-edited-note").on("click", function(event){
+    
     event.preventDefault();
+    
     var id = $(this).data("id");
 
     //Store input data in variables
@@ -91,13 +88,11 @@ $(document.body).on("click", ".add-edited-note", function(){
     $("#note-text").val("");
 
     $.ajax("/api/notes/" + id, {
-        type: "PUT"
-    }).then(function(data){
-        if (data) {
-            console.log("Note has been updated.");
-        }
+        type: "PUT",
+        data: editNote
+    }).then(function(err){
+        if (err) throw err;
     });
-
-    // location.reload();
+    location.reload();
 });
 
