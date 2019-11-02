@@ -1,6 +1,4 @@
-// var moment = require("moment");
-
- // Show note table by retrieving input from api
+// Show note table by retrieving input from api
  $.get("/api/notes", function(result){
     $(".list-group").html("");
     console.log('result', result);
@@ -11,8 +9,8 @@
         var edit = $("<a href= '#top'><i class='fas fa-pen float-right text-danger edit-note' data-id= " + result[i].id + ">")
         var trash = $("<i class='fas fa-trash-alt float-right text-danger delete-note' data-id= " + result[i].id + ">")
         var noteText = $("<p class='mt-2'>" + result[i].text + "</p>");
-        // var timeConverter = moment(result[i].created_at).format("YYYY-MM-DD HH:mm A");
-        var timeStamp = $("<p>" + result[i].created_at + "</p>");
+        var timeConverter = moment(result[i].created_at).format("YYYY-MM-DD HH:mm:ss");
+        var timeStamp = $("<p>" + timeConverter + "</p>");
         div.append(noteTitle, trash, edit);
         noteArea.append(div, noteText, timeStamp);
         $(".list-group").prepend(noteArea);
