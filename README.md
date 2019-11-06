@@ -5,7 +5,7 @@ An application to mimic note taker.
 Create an application to practice **HTML**, **SCC**, **Javascript**, **Node.js** and **MySQL**.
 
 ## Technologies used and why
-**HTML** and **SCC** are used to build browser content
+**HTML** and **SCC** are used to build browser content.  
 **Javascript** is used to build user server/sql connection initialization, routes setup, request/response handle and read/write sql database.  
 **Node.js** is an environment to execute javascript in terminal.  
 **MySQL** is a database used to store ivnetory and sales data.
