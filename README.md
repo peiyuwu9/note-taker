@@ -1,14 +1,15 @@
-# NoteTaker
+# Note Taker
 An application to mimic note taker.
 
 ## Motivation
-Create an application to practice **HTML**, **SCC**, **Javascript**, **Node.js** and **MySQL**.
+Create an application to practice Node.js, Express.js and MySQL.
 
 ## Technologies used and why
 **HTML** and **SCC** are used to build browser content.  
 **Javascript** is used to build user server/sql connection initialization, routes setup, request/response handle and read/write sql database.  
+**Express.js** is a application framewrok to simplify methods of API communications.  
 **Node.js** is an environment to execute javascript in terminal.  
-**MySQL** is a database used to store ivnetory and sales data.
+**MySQL** is a database used to store note data.
 
 ## How to use
 1. Once log in this website, you will be able to see all current notes stored in database.
